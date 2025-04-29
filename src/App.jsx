@@ -4,7 +4,9 @@ function App() {
   
   return (
     <>
-      <h1 className="bg-green-300"> Hello World </h1>
+      <div className="min-h-screen bg-slate-50 text-black dark:bg-gray-800 dark:text-white">
+        <h1> Hello World </h1>
+      </div>
     </>
   )
 }
