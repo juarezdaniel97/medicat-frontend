@@ -10,8 +10,6 @@ const Home = () => {
 
     return (
         <>
-            {/* <Header/>
-            <Login/> */}
             <div className={`min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
                 <Header />
                 <main className="container mx-auto px-4 py-8">

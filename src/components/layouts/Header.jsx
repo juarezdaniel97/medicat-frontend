@@ -7,11 +7,11 @@ import ThemeToggler  from "../shared/ThemeToggler";
 import MobileMenu   from "../shared/MobileMenu";
 
 
-
 const Header = () => {
     
     const { theme } = useThemeContext();
     const isDarkMode = theme === 'dark';
+    
     
     
     return (

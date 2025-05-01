@@ -5,13 +5,16 @@ import App from './App.jsx'
 import { ThemeProvider } from './contexts/ThemeContext.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext.jsx'
+import { PatientProfileProvider } from './contexts/PatientProfileContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
-          <App />
+          <PatientProfileProvider>
+            <App />
+          </PatientProfileProvider>
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>

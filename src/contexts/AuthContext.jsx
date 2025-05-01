@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api, { loginUser, registerUser } from "../API/auth";
+import api, { getUser, loginUser, registerUser } from "../API/auth";
 import { jwtDecode } from "jwt-decode";
 
 
@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 
     export const AuthProvider = ({children}) =>{
         const [user, setUser] = useState(null);
+        const [currentUser, setCurrentUser] = useState(null)
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(null)
         const [success, setSuccess] = useState("")
@@ -40,8 +41,18 @@ import { jwtDecode } from "jwt-decode";
                 }
             }
 
+            const obetenerUser = async () => {
+                const token = localStorage.getItem('token');
+                        
+                if (token) {
+                    const decoded = jwtDecode(token);
+                    const userData = await getUser(decoded.id);
+                    setCurrentUser(userData)
+                }
+            }
+
             checkAuth();
-            
+            obetenerUser();
         }, []);
         
 
@@ -56,9 +67,8 @@ import { jwtDecode } from "jwt-decode";
                 const { token } = res.data;
 
                 const decoded = jwtDecode(token);
-
-                setUser(decoded);
-
+                
+                setUser(decoded)
                 localStorage.setItem("token", token);
 
                 api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -88,7 +98,7 @@ import { jwtDecode } from "jwt-decode";
             setSuccess("")
             try {
                 const res = await registerUser(data);
-                const {user: userData, token } = res.data.data;
+                const { token } = res.data.data;
                 
                 const decoded = jwtDecode(token);
 
@@ -116,7 +126,7 @@ import { jwtDecode } from "jwt-decode";
 
 
         return (
-            <AuthContext.Provider value={ {user,loading, error, success ,clearError, login, logout, register} }>
+            <AuthContext.Provider value={ {user, currentUser ,loading, error, success ,clearError, login, logout, register} }>
                 {children}
             </AuthContext.Provider>
         )
