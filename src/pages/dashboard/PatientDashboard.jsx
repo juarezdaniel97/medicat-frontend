@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import HeaderPatient from '../../components/layouts/HeaderPatient'
-import { Calendar, FileText, User, Heart} from 'lucide-react';
+import { Calendar, FileText, User, Heart, User2, UsbIcon, UserSquare, UserCheck, UserCheck2, UserCheck2Icon, UserCircle, UserCircle2, UserCircle2Icon} from 'lucide-react';
 import Agenda from '../patient/Agenda';
 import Historial from '../patient/Historial';
 import Medico from '../medico/Medico';
 import Favoritos from '../patient/Favoritos';
+import Perfil from '../profiles/Perfil';
 
 const PatientDashboard = () => {
 
@@ -33,6 +34,19 @@ const PatientDashboard = () => {
         { id: 5, nombre: "Dr. Carlos Ruiz", especialidad: "Análisis Clínicos", valoracion: 4.5, disponible: true }
     ];
     
+    const perfil = {
+        nombre: 'Juan',
+        apellido: 'Pérez',
+        correo: 'juan.perez@email.com',
+        telefono: '123456789',
+        fechaNacimiento: '1990-01-01',
+        genero: 'Masculino',
+        direccion: {
+          calle: 'Calle Falsa 123',
+          ciudad: 'Springfield',
+          codigoPostal: '12345'
+        }
+      }
     
     const favoritos = medicos.slice(0, 3);
 
@@ -51,14 +65,14 @@ const PatientDashboard = () => {
                             className={`py-4 px-1 flex items-center border-b-2 font-medium text-sm cursor-pointer ${ activeTab === 'agenda' ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }`}
                         >
                         <Calendar className="mr-2 h-5 w-5" />
-                            Mi Agenda
+                            Agenda
                         </button>
                         <button
                             onClick={() => setActiveTab('historial')}
                             className={`py-4 px-1 flex items-center border-b-2 font-medium text-sm cursor-pointer ${ activeTab === 'historial' ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }`}
                         >
                         <FileText className="mr-2 h-5 w-5" />
-                            Historial Médico
+                            Historial
                         </button>
                         <button
                             onClick={() => setActiveTab('medicos')}
@@ -74,6 +88,12 @@ const PatientDashboard = () => {
                             <Heart className='mr-2 h-5 w-5'/>
                             Favoritos
                         </button>
+                        <button
+                            onClick={() => setActiveTab('perfil') }
+                            className={`py-4 px-1 flex items-center border-b-2 font-medium text-sm cursor-pointer ${ activeTab == 'perfil' ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400': 'border-transparent text-gray-500 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:border-gray-600' }`}>
+                            <UserCircle2Icon className='mr-2 h-5 w-5'/>
+                            Mi Perfil
+                        </button>
                     </nav>
                 </div>
                 
@@ -83,6 +103,7 @@ const PatientDashboard = () => {
                     {activeTab === 'historial' && <Historial historial={historial} />}
                     {activeTab === 'medicos' && <Medico medicos={medicos} />}
                     {activeTab === 'favoritos' && <Favoritos favoritos={favoritos} />}
+                    {activeTab === 'perfil' && <Perfil perfil={perfil}/>}
                 </div>
             </main>
         </div>
