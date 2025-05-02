@@ -1,44 +1,44 @@
 import React from 'react'
-import { useThemeContext } from '../../contexts/ThemeContext';
-import Logo from '../shared/Logo';
-import SearchBar from '../shared/SearchBar';
-import UserProfile from '../shared/UserProfile';
 import ThemeToggler from '../shared/ThemeToggler';
-import MobileMenu from '../shared/MobileMenu';
-import NavigationPatient from '../shared/navigation/NavigationPatient';
+import Logo from '../shared/Logo';
+import ButtonNotifications from '../shared/Buttons/ButtonNotifications';
+import ButtonLogout from '../shared/Buttons/ButtonLogout';
 
 const HeaderPatient = () => {
 
-    const { theme } = useThemeContext();
-    const isDarkMode = theme === 'dark';
+    // Simular datos del usuario
+    const user = {
+        name: "Daniel Pérez",
+        email: "juan@ejemplo.com"
+    };
 
     return (
-        <div className={`w-full ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'} shadow-md`}>
-            <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center py-4">
-                    {/* Logo */}
-                    <Logo />
-                    
-                    {/* Desktop Navigation */}
-                    {/* <Navigation /> */}
-                    <NavigationPatient/>
-                    {/* Right section */}
-                    <div className="flex items-center space-x-3">
-                        {/* Search */}
-                        <SearchBar />
-                        
-                        {/* User dropdown */}
-                        <UserProfile />
-                        
-                        {/* Dark mode toggle */}
-                        <ThemeToggler />
-                        
-                        {/* Mobile menu button */}
-                        <MobileMenu />
-                    </div>
+        <header className='bg-gray-100  dark:bg-gray-800  shadow-sm'>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between h-16">
+                            <div className="flex items-center">
+                                <Logo/>
+                            </div>
+        
+                            <div className="flex items-center space-x-4">
+                                <ButtonNotifications/>
+
+                                <ThemeToggler/>
+
+                                <div className='flex items-center'>
+                                    <div className='h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-medium'>
+                                        {user?.name?.charAt(0) || "P"}
+                                    </div>
+                                    <span className=' ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block'>
+                                        {user?.name || "Paciente"} 
+                                    </span>
+                                </div>
+
+                                <ButtonLogout/>
+                            </div>
+                        </div>
                 </div>
-            </div>
-        </div>
+        </header>
     )
 }
 

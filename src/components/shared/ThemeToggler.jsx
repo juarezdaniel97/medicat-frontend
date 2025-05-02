@@ -17,7 +17,7 @@ const ThemeToggler = () => {
             }`}
             aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
         >
-            {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
     )
 }
