@@ -8,7 +8,6 @@ import { jwtDecode } from "jwt-decode";
 
     export const AuthProvider = ({children}) =>{
         const [user, setUser] = useState(null);
-        const [currentUser, setCurrentUser] = useState(null)
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(null)
         const [success, setSuccess] = useState("")
@@ -47,7 +46,7 @@ import { jwtDecode } from "jwt-decode";
                 if (token) {
                     const decoded = jwtDecode(token);
                     const userData = await getUser(decoded.id);
-                    setCurrentUser(userData)
+                    localStorage.setItem("user", JSON.stringify(userData.data))
                 }
             }
 
@@ -88,7 +87,8 @@ import { jwtDecode } from "jwt-decode";
 
         const logout = () =>{
             setUser(null);
-            localStorage.removeItem("token")
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
             delete api.defaults.headers.common["Authorization"];
         }
 
@@ -126,7 +126,7 @@ import { jwtDecode } from "jwt-decode";
 
 
         return (
-            <AuthContext.Provider value={ {user, currentUser ,loading, error, success ,clearError, login, logout, register} }>
+            <AuthContext.Provider value={ {user,loading, error, success ,clearError, login, logout, register} }>
                 {children}
             </AuthContext.Provider>
         )

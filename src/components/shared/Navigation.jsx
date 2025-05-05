@@ -9,7 +9,7 @@ const Navigation = ({ mobile = false }) => {
     const navigationItems = [
         { name: 'Inicio', href: '#' },
         { name: 'Servicios', href: '#' },
-        { name: 'Doctores', href: '#' },
+        { name: 'Sobre Nosotros', href: '#' },
         { name: 'Contacto', href: '#' },
     ];
     

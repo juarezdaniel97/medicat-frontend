@@ -3,14 +3,14 @@ import ThemeToggler from '../shared/ThemeToggler';
 import Logo from '../shared/Logo';
 import ButtonNotifications from '../shared/Buttons/ButtonNotifications';
 import ButtonLogout from '../shared/Buttons/ButtonLogout';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { usePatientProfileContext } from '../../contexts/PatientProfileContext';
 
 const HeaderPatient = () => {
 
-    // Simular datos del usuario
-    const user = {
-        name: "Daniel Pérez",
-        email: "juan@ejemplo.com"
-    };
+    const { user } = useAuthContext();
+    const {profile} = usePatientProfileContext();
+
 
     return (
         <header className='bg-gray-100  dark:bg-gray-800  shadow-sm'>
@@ -27,10 +27,10 @@ const HeaderPatient = () => {
 
                         <div className='flex items-center'>
                             <div className='h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-medium'>
-                                {user?.name?.charAt(0) || "P"}
+                                {profile?.data?.firstName.charAt(0) || "P"}
                             </div>
                             <span className=' ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block'>
-                                {user?.name || "Paciente"} 
+                                {profile?.data?.firstName || "Paciente"} {profile?.data?.lastName || ""}
                             </span>
                         </div>
 

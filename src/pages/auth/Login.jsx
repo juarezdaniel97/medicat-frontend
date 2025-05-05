@@ -7,39 +7,30 @@ import { Loader2, Sun, Moon } from 'lucide-react'; // Agregamos iconos para el t
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { login, loading, error, clearError } = useAuthContext();
-    const { theme, toggleTheme } = useThemeContext(); // Usamos el contexto de tema
+    const { user, login, loading, error, clearError } = useAuthContext();
+    const { theme, toggleTheme } = useThemeContext(); 
     
     const navigate = useNavigate();
 
+    if (user) {
+        navigate("/home-patient");
+    }
+
+    
     useEffect(() => {
         clearError();
     }, [])
     
     const onSubmit = async (data) => {
-        const success = await login(data.email, data.password);
-        if (success) {
-            navigate("/home");
+        const response = await login(data.email, data.password);
+        if (response) {
+            navigate("/home-patient"); // Redirigir a la página de inicio del paciente
         }
     }
     
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-200 px-4 py-6 sm:px-6">
-            <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-md transition-colors duration-200">
-                <div className="flex justify-end mb-2 sm:mb-4">
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                        aria-label="Cambiar tema"
-                    >
-                        {theme === 'dark' ? (
-                            <Sun className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400" />
-                        ) : (
-                            <Moon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
-                        )}
-                    </button>
-                </div>
-
+        <div className="flex items-center justify-center">
+            <div className="bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-md transition-colors duration-200">
                 <div className="text-center mb-6 sm:mb-8">
                     <h1 className="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">MediCat</h1>
                     <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base">Inicia sesión en tu cuenta</p>
@@ -137,7 +128,7 @@ const Login = () => {
                 <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                         ¿No tienes una cuenta?{' '}
-                        <Link to="/register" className='text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 font-medium'>
+                        <Link to="/register" className='text-emerald-600 cursor-pointer dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 font-medium'>
                             Regístrate aquí
                         </Link>
                     </p>

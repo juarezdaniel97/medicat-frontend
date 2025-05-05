@@ -103,7 +103,7 @@ const PatientDashboard = () => {
                     {activeTab === 'historial' && <Historial historial={historial} />}
                     {activeTab === 'medicos' && <Medico medicos={medicos} />}
                     {activeTab === 'favoritos' && <Favoritos favoritos={favoritos} />}
-                    {activeTab === 'perfil' && <Perfil perfil={perfil}/>}
+                    {activeTab === 'perfil' && <Perfil/>}
                 </div>
             </main>
         </div>

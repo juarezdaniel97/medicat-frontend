@@ -2,7 +2,6 @@ import { useThemeContext } from '../../contexts/ThemeContext';
 import Logo from "../shared/Logo";
 import Navigation from "../shared/Navigation";
 import SearchBar  from "../shared/SearchBar";
-import UserProfile from "../shared/UserProfile";
 import ThemeToggler  from "../shared/ThemeToggler";
 import MobileMenu   from "../shared/MobileMenu";
 
@@ -28,9 +27,6 @@ const Header = () => {
                     <div className="flex items-center space-x-3">
                         {/* Search */}
                         <SearchBar />
-                        
-                        {/* User dropdown */}
-                        <UserProfile />
                         
                         {/* Dark mode toggle */}
                         <ThemeToggler />

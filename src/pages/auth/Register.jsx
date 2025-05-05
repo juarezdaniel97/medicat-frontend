@@ -5,6 +5,8 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useThemeContext } from '../../contexts/ThemeContext'; // Importamos el contexto de tema
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import Header from '../../components/layouts/Header';
+import Footer from '../../components/layouts/Footer';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, watch, } = useForm();
@@ -42,21 +44,11 @@ const Register = () => {
     const password = watch('password');
 
     return (
+        <>
+        
+        <Header/>
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-200 px-4 py-6 sm:px-6">
             <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-md transition-colors duration-200">
-                <div className="flex justify-end mb-2 sm:mb-4">
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                        aria-label="Cambiar tema"
-                    >
-                        {theme === 'dark' ? (
-                            <Sun className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400" />
-                        ) : (
-                            <Moon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
-                        )}
-                    </button>
-                </div>
                 
                 <div className="text-center mb-6 sm:mb-8">
                     <h1 className="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">MediCat</h1>
@@ -192,6 +184,8 @@ const Register = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 
