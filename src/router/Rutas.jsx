@@ -19,10 +19,15 @@ const Rutas = () => {
                     <Home/>
                     </PrivateRoutes>
                 } /> */}
+
                 <Route path='/' element={<Home/>} />
-                <Route path='/login' element={<Login/>} />
                 <Route path='/register' element={<Register/>} />
-                <Route path='/register-profile' element={<RegisterProfile/>} />
+                <Route path='/register-profile' 
+                    element={
+                        <PrivateRoutes>
+                            <RegisterProfile/>
+                        </PrivateRoutes>
+                        } />
                 
 
 
@@ -32,12 +37,13 @@ const Rutas = () => {
                             <AdminDashboard/>
                         </PrivateRoutes>
                     } /> */}
-                {/* <Route path='/home-patient' 
+                <Route path='/home-patient' 
                     element={
                         <PrivateRoutes>
                             <PatientDashboard/>
                         </PrivateRoutes>
                     } />
+                {/*
                 <Route path='/home-doctor'  
                     element={
                         <PrivateRoutes>

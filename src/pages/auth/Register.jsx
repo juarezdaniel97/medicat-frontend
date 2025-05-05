@@ -34,10 +34,10 @@ const Register = () => {
             lastName: data.lastName
         };
         
-        const success = await registerUser(userData);
+        const response = await registerUser(userData);
 
-        if (success) {
-            navigate("/home")
+        if (response) {
+            navigate("/register-profile");
         }
     };
 

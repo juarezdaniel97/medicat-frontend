@@ -32,7 +32,7 @@ const RegisterProfile = () => {
 
         if (success) {
             
-            navigate("/home");
+            navigate("/home-patient");
         }
     };
 

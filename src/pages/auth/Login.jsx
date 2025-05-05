@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../contexts/AuthContext';
-import { useThemeContext } from '../../contexts/ThemeContext'; // Importamos el contexto de tema
+import { useThemeContext } from '../../contexts/ThemeContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { Loader2, Sun, Moon } from 'lucide-react'; // Agregamos iconos para el toggle
+import { Loader2 } from 'lucide-react';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user, login, loading, error, clearError } = useAuthContext();
-    const { theme, toggleTheme } = useThemeContext(); 
     
     const navigate = useNavigate();
 
-    if (user) {
-        navigate("/home-patient");
-    }
+    // if (user) {
+    //     navigate("/home-patient");
+    // }
 
     
     useEffect(() => {
