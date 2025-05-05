@@ -1,16 +1,11 @@
-import React, { use, useEffect, useState } from 'react'
 import { User, Mail, Phone, Calendar, MapPin, Edit } from 'lucide-react';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 
 const Perfil = () => {
 
-    const { userData, user } = useAuthContext();
+    const { userData } = useAuthContext();
     
-    if (!userData) {
-        return <div className="text-center text-gray-500 dark:text-gray-400">{`No hay datos del usuario ${user.id}`}</div>;
-    }
-
     return (
         <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
             {/* Cabecera */}
